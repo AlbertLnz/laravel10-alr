@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,9 +123,7 @@ Route::get('updates/{id}/{version}', function($id, $version) {
 // CRUD routes ( 5 routes )
 
 // GET:
-Route::get('/posts', function() {
-    return "GET route from '/posts'";
-});
+Route::get('/posts', [PostController::class, 'index']);
 
 // POST:
 Route::post('/posts', function() {
