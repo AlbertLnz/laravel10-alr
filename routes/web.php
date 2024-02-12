@@ -69,3 +69,8 @@ Route::get('innovations/{name}', function($name) {
 Route::get('advices/{name}', function($name) {
     return "Hello, advice name: $name";
 })->whereNumber('name');
+
+// Route with 'id' param must be numeric --> using a pattern in RouteServiceProvider config (Regular expression globally)
+Route::get('resources/{id}', function($id) {
+    return "Hello, resource id: $id";
+});
