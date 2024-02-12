@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use PhpParser\Node\Expr\PostDec;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,3 +161,40 @@ Route::resource('posts', PostController::class); // <-- generate 7 routes -> def
 // Route::resource('posts', PostController::class)
 //     ->parameters(['posts' => 'anyName'])
 //     ->names('startName'); // NAMES: Change the value of routes names
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Route Groups
+
+// Avoiding only Controller
+// Route::controller(ArticleController::class)->group(function() {
+//     Route::get('/articles', 'index')->name('article.index');
+//     Route::get('/articles/create', 'create')->name('article.create');
+//     Route::post('/articles/{article}', 'store')->name('article.store');
+//     Route::get('/articles/{article}', 'show')->name('article.show');
+//     Route::get('/articles/{article}/edit', 'edit')->name('article.edit');
+//     Route::put('/articles/{article}', 'update')->name('article.update');
+//     Route::delete('/articles/{article}', 'destroy')->name('article.destroy');
+// });
+
+// Avoiding prefix & Controller
+// Route::prefix('articles')->controller(ArticleController::class)->group(function() {
+//     Route::get('/', 'index')->name('article.index');
+//     Route::get('/create', 'create')->name('article.create');
+//     Route::post('/{article}', 'store')->name('article.store');
+//     Route::get('/{article}', 'show')->name('article.show');
+//     Route::get('/{article}/edit', 'edit')->name('article.edit');
+//     Route::put('/{article}', 'update')->name('article.update');
+//     Route::delete('/{article}', 'destroy')->name('article.destroy');
+// });
+
+// Avoiding prefix, name & Controller
+Route::prefix('articles')->name('article.')->controller(ArticleController::class)->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/{article}', 'store')->name('store');
+    Route::get('/{article}', 'show')->name('show');
+    Route::get('/{article}/edit', 'edit')->name('edit');
+    Route::put('/{article}', 'update')->name('update');
+    Route::delete('/{article}', 'destroy')->name('destroy');
+});
