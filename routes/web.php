@@ -21,7 +21,18 @@ use Illuminate\Support\Facades\Route;
 //  - Sólo rutas creadas por paquetes de terceros --> php artisan r:l --only-vendor
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+
+    $routes = route('updates.list') . 
+    ' - ' 
+    . route('updates.list.id', 6) . 
+    ' - ' 
+    . route('updates.list.id.version', [
+        'id' => 3,
+        'version' => 4.6,
+    ]);
+
+    return $routes;
 });
 
 // Route::get('/contacto', function() {
@@ -84,4 +95,19 @@ Route::get('resources/{id}', function($id) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// Group of routes
+// Routes names
+
+// Without param
+Route::get('updates', function() {
+    return "Hello, updates list";
+})->name('updates.list');
+
+// With 1 param
+Route::get('updates/{id}', function($id) {
+    return "Hello, update id: $id";
+})->name('updates.list.id');
+
+// With +1 params
+Route::get('updates/{id}/{version}', function($id, $version) {
+    return "Hello, update id: $id with version: $version";
+})->name('updates.list.id.version');
