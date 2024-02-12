@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROUTE COMMANDS:
+//  - Todas las rutas ------------------------------> php artisan route:list === php artisan r:l
+//  - Sólo las de un path concreto: php artisan ----> php artisan r:l --path=contacto
+//  - Sólo rutas creadas por mi (api y web) --------> php artisan r:l --except-vendor
+//  - Ahora conociendo también el middleware usado -> php artisan r:l --except-vendor -v
+//  - Sólo rutas creadas por paquetes de terceros --> php artisan r:l --only-vendor
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -74,3 +81,7 @@ Route::get('advices/{name}', function($name) {
 Route::get('resources/{id}', function($id) {
     return "Hello, resource id: $id";
 });
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Group of routes
