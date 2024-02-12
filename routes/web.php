@@ -120,19 +120,19 @@ Route::get('updates/{id}/{version}', function($id, $version) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// CRUD routes ( 5 routes )
+// CRUD routes ( 7 routes )
 
 // GET:
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::get('/posts/{postId}', [PostController::class, 'show'])->name('posts.show');
-Route::get('/posts/{postId}/edit', [PostController::class, 'edit'])->name('posts.edit');
+// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+// Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+// Route::get('/posts/{postId}', [PostController::class, 'show'])->name('posts.show');
+// Route::get('/posts/{postId}/edit', [PostController::class, 'edit'])->name('posts.edit');
 
 // POST:
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 // PUT:
-Route::put('/posts/{postId}', [PostController::class, 'update'])->name('posts.update');
+// Route::put('/posts/{postId}', [PostController::class, 'update'])->name('posts.update');
 
 // PATCH:
 // Route::patch('/posts', function() {
@@ -140,4 +140,20 @@ Route::put('/posts/{postId}', [PostController::class, 'update'])->name('posts.up
 // });
 
 // DELETE:
-Route::delete('/posts/{postId}', [PostController::class, 'destroy'])->name('posts.destroy');
+// Route::delete('/posts/{postId}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// CRUD Post routes ( 7 routes [index, create, store, show, edit, update, destroy] ) -> Route Resource ----> php artisan r:l --except-vendor --path=posts
+
+Route::resource('posts', PostController::class); // <-- generate 7 routes -> default parameter name for all functions == 'post'
+// Route::resource('posts', PostController::class)->only(['index', 'show']); // <-- ONLY: select 2 routes only
+// Route::resource('posts', PostController::class)->except(['create', 'edit']); // <-- EXCEPT: select API routes -> 5 routes
+// Route::apiResource('posts', PostController::class); // <-- APIRESOURCE: Alternative, same 5 API routes
+
+// Route::resource('posts', PostController::class)
+//     ->parameters(['posts' => 'anyName']); // PARAMETERS: Change name of param from 'post' (per default) to 'anyName' --> to check: php artisan r:l --except-vendor --path=posts
+
+// Route::resource('posts', PostController::class)
+//     ->parameters(['posts' => 'anyName'])
+//     ->names('startName'); // NAMES: Change the value of routes names
