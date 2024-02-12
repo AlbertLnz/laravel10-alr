@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -25,8 +26,9 @@ use App\Http\Controllers\PostController;
 //  - Para guardar las rutas en caché --------------> php artisan route:cache
 //  - Limpiar rutas de caché -----------------------> php artisan route:clear
 
+Route::get('/', HomeController::class);
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     // return view('welcome');
 
     $routes = route('updates.list') . 
