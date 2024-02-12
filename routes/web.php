@@ -124,23 +124,20 @@ Route::get('updates/{id}/{version}', function($id, $version) {
 
 // GET:
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/{postId}', [PostController::class, 'show']);
+Route::get('/posts/{postId}/edit', [PostController::class, 'edit']);
 
 // POST:
-Route::post('/posts', function() {
-    return "POST route from '/posts'";
-});
+Route::post('/posts', [PostController::class, 'store']);
 
 // PUT:
-Route::put('/posts', function() {
-    return "PUT route from '/posts'";
-});
+Route::put('/posts/{postId}', [PostController::class, 'update']);
 
 // PATCH:
-Route::patch('/posts', function() {
-    return "PATCH route from '/posts'";
-});
+// Route::patch('/posts', function() {
+//     return "PATCH route from '/posts'";
+// });
 
 // DELETE:
-Route::delete('/posts/{id}', function($id) {
-    return "DELETe route from '/posts/{$id}'";
-});
+Route::delete('/posts/{postId}', [PostController::class, 'destroy']);
