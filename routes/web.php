@@ -49,3 +49,23 @@ Route::get('/experiences/{name}/{price?}', function($name, $price = null) {
         return "Hello, experience name: $name";
     }
 });
+
+// Using Regular Expressions -> only strings
+Route::get('solutions/{name}', function($name) {
+    return "Hello, solution name: $name";
+})->where('name', '[a-zA-Z]+');
+
+// Without using Regular Expressions -> only strings (whereAlpha)
+Route::get('supports/{name}', function($name) {
+    return "Hello, support name: $name";
+})->whereAlpha('name');
+
+// Without using Regular Expressions -> string & numbers (whereAlphaNumeric)
+Route::get('innovations/{name}', function($name) {
+    return "Hello, innovation name: $name";
+})->whereAlphaNumeric('name');
+
+// Without using Regular Expressions -> only numbers (whereNumber)
+Route::get('advices/{name}', function($name) {
+    return "Hello, advice name: $name";
+})->whereNumber('name');
