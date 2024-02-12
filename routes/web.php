@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 //  - Ahora conociendo también el middleware usado -> php artisan r:l --except-vendor -v
 //  - Sólo rutas creadas por paquetes de terceros --> php artisan r:l --only-vendor
 
+// ROUTE PRODUCTION COMMANDS 
+//  - Para guardar las rutas en caché --------------> php artisan route:cache
+//  - Limpiar rutas de caché -----------------------> php artisan route:clear
+
+
 Route::get('/', function () {
     // return view('welcome');
 
@@ -111,3 +116,32 @@ Route::get('updates/{id}', function($id) {
 Route::get('updates/{id}/{version}', function($id, $version) {
     return "Hello, update id: $id with version: $version";
 })->name('updates.list.id.version');
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// CRUD routes ( 5 routes )
+
+// GET:
+Route::get('/posts', function() {
+    return "GET route from '/posts'";
+});
+
+// POST:
+Route::post('/posts', function() {
+    return "POST route from '/posts'";
+});
+
+// PUT:
+Route::put('/posts', function() {
+    return "PUT route from '/posts'";
+});
+
+// PATCH:
+Route::patch('/posts', function() {
+    return "PATCH route from '/posts'";
+});
+
+// DELETE:
+Route::delete('/posts/{id}', function($id) {
+    return "DELETe route from '/posts/{$id}'";
+});
