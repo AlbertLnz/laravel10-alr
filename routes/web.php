@@ -123,16 +123,16 @@ Route::get('updates/{id}/{version}', function($id, $version) {
 // CRUD routes ( 5 routes )
 
 // GET:
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/create', [PostController::class, 'create']);
-Route::get('/posts/{postId}', [PostController::class, 'show']);
-Route::get('/posts/{postId}/edit', [PostController::class, 'edit']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/{postId}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{postId}/edit', [PostController::class, 'edit'])->name('posts.edit');
 
 // POST:
-Route::post('/posts', [PostController::class, 'store']);
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 // PUT:
-Route::put('/posts/{postId}', [PostController::class, 'update']);
+Route::put('/posts/{postId}', [PostController::class, 'update'])->name('posts.update');
 
 // PATCH:
 // Route::patch('/posts', function() {
@@ -140,4 +140,4 @@ Route::put('/posts/{postId}', [PostController::class, 'update']);
 // });
 
 // DELETE:
-Route::delete('/posts/{postId}', [PostController::class, 'destroy']);
+Route::delete('/posts/{postId}', [PostController::class, 'destroy'])->name('posts.destroy');
