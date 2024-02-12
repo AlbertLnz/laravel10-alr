@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/contacto', function() {
+//     return 'Hello World from contact page (GET)';
+// });
+
+// Route::post('/contacto', function() {
+//     return 'Hello World from contact page (POST)';
+// });
+
+Route::match(['get', 'post'], '/contacto', function() {
+    return 'Hello World from contact page (GET or POST)';
+});
